@@ -105,6 +105,12 @@ manifest-reading mods (e.g. `shudnal-ConditionalConfigSync`).
 `package.ps1`'s output is a standard Thunderstore-format package —
 Hexium accepts the same zip as-is, no changes needed.
 
+Before either platform, the built zip is scanned with
+[VirusTotal](https://www.virustotal.com/) (`VIRUSTOTAL_API_KEY`
+repository secret — a free account's API key works). Any malicious or
+suspicious verdict fails the release before it publishes anywhere; the
+report link is added to the GitHub Release notes either way.
+
 - **Thunderstore** publishing is automated: pushing a version tag builds
   and uploads it via [Thunderstore CLI](https://github.com/thunderstore-io/thunderstore-cli)
   (`tcli`), authenticated with the `THUNDERSTORE_API_TOKEN` repository

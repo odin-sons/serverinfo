@@ -9,6 +9,17 @@ no prerelease suffixes).
 
 ## [Unreleased]
 
+## [2.2.5] - 2026-09-13
+
+### Added
+
+- VirusTotal scan of the built package before publishing to either
+  platform, gated on the `VIRUSTOTAL_API_KEY` repository secret. A
+  malicious/suspicious verdict fails the release before anything ships;
+  the scan report link is added to the GitHub Release notes either way.
+- A VirusTotal badge in the README, linking to the latest release
+  (where that release's own scan report is linked).
+
 ## [2.2.4] - 2026-09-13
 
 ### Fixed
@@ -230,7 +241,8 @@ no prerelease suffixes).
 
 - The unused Harmony dependency.
 
-[Unreleased]: https://github.com/odin-sons/serverinfo/compare/v2.2.4...HEAD
+[Unreleased]: https://github.com/odin-sons/serverinfo/compare/v2.2.5...HEAD
+[2.2.5]: https://github.com/odin-sons/serverinfo/compare/v2.2.4...v2.2.5
 [2.2.4]: https://github.com/odin-sons/serverinfo/compare/v2.2.3...v2.2.4
 [2.2.3]: https://github.com/odin-sons/serverinfo/compare/v2.2.2...v2.2.3
 [2.2.2]: https://github.com/odin-sons/serverinfo/compare/v2.2.1...v2.2.2

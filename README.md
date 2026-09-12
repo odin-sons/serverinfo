@@ -2,6 +2,7 @@
 
 [![CI](https://github.com/odin-sons/serverinfo/actions/workflows/ci.yml/badge.svg)](https://github.com/odin-sons/serverinfo/actions/workflows/ci.yml)
 [![Publish](https://github.com/odin-sons/serverinfo/actions/workflows/publish.yml/badge.svg)](https://github.com/odin-sons/serverinfo/actions/workflows/publish.yml)
+[![VirusTotal](https://img.shields.io/badge/VirusTotal-scanned_every_release-blue?logo=virustotal)](https://github.com/odin-sons/serverinfo/releases/latest)
 
 A BepInEx plugin for Valheim dedicated servers. Exposes a small HTTP API
 with the world name, connected players, and installed mods (enriched with

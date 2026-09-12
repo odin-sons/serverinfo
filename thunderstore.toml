@@ -7,7 +7,7 @@ name = "ServerInfo"
 # Overridden at publish time by `tcli publish --package-version` (see
 # .github/workflows/publish.yml), which reads the real version from the
 # git tag — this value is only a placeholder for manual `tcli build`/`init`.
-versionNumber = "2.2.4"
+versionNumber = "2.2.5"
 description = "Exposes a small HTTP JSON API with a Valheim server's world name, connected players (with Steam avatars), and installed mods - built for live status pages that read it directly from the browser."
 websiteUrl = ""
 containsNsfwContent = false
