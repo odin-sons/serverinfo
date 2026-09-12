@@ -7,9 +7,9 @@ name = "ServerInfo"
 # Overridden at publish time by `tcli publish --package-version` (see
 # .github/workflows/publish.yml), which reads the real version from the
 # git tag — this value is only a placeholder for manual `tcli build`/`init`.
-versionNumber = "2.2.5"
+versionNumber = "2.2.6"
 description = "Exposes a small HTTP JSON API with a Valheim server's world name, connected players (with Steam avatars), and installed mods - built for live status pages that read it directly from the browser."
-websiteUrl = ""
+websiteUrl = "https://github.com/odin-sons/serverinfo"
 containsNsfwContent = false
 
 [package.dependencies]
@@ -36,6 +36,10 @@ target = "ServerInfo.dll"
 # own copy entry to actually end up in the package
 source = "./CHANGELOG.md"
 target = "CHANGELOG.md"
+
+[[build.copy]]
+source = "./LICENSE"
+target = "LICENSE"
 
 [publish]
 repository = "https://thunderstore.io"

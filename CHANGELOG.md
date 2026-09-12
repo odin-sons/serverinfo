@@ -9,6 +9,22 @@ no prerelease suffixes).
 
 ## [Unreleased]
 
+## [2.2.6] - 2026-09-13
+
+### Added
+
+- Licensed under GPL-3.0-or-later (see `LICENSE`, full official text).
+  GPL-3.0 requires forks/redistributions to keep this project's
+  copyright and license notices intact — those notices point back to
+  <https://github.com/odin-sons/serverinfo>. Added the matching SPDX
+  header to every source file and a `License` section to the README.
+- `LICENSE` is now included in the published package zip.
+
+### Changed
+
+- `manifest.json`'s and `thunderstore.toml`'s `website_url` now point
+  to the repository instead of being empty.
+
 ## [2.2.5] - 2026-09-13
 
 ### Added
@@ -241,7 +257,8 @@ no prerelease suffixes).
 
 - The unused Harmony dependency.
 
-[Unreleased]: https://github.com/odin-sons/serverinfo/compare/v2.2.5...HEAD
+[Unreleased]: https://github.com/odin-sons/serverinfo/compare/v2.2.6...HEAD
+[2.2.6]: https://github.com/odin-sons/serverinfo/compare/v2.2.5...v2.2.6
 [2.2.5]: https://github.com/odin-sons/serverinfo/compare/v2.2.4...v2.2.5
 [2.2.4]: https://github.com/odin-sons/serverinfo/compare/v2.2.3...v2.2.4
 [2.2.3]: https://github.com/odin-sons/serverinfo/compare/v2.2.2...v2.2.3

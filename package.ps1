@@ -28,6 +28,7 @@ Copy-Item (Join-Path $root "manifest.json") $stage
 Copy-Item (Join-Path $root "icon.png") $stage
 Copy-Item (Join-Path $root "README.md") $stage
 Copy-Item (Join-Path $root "CHANGELOG.md") $stage
+Copy-Item (Join-Path $root "LICENSE") $stage
 Copy-Item $dll $stage
 
 $zipPath = Join-Path $releaseDir "ServerInfo-$version.zip"

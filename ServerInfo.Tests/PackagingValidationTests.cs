@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// Copyright (C) 2026 Odin_Sons <https://github.com/odin-sons/serverinfo>
+
 using System;
 using System.Drawing;
 using System.Drawing.Imaging;
@@ -38,7 +41,7 @@ namespace ServerInfo.Tests
         [Fact]
         public void RequiredPackageFiles_ExistAtRepoRoot()
         {
-            foreach (var file in new[] { "manifest.json", "icon.png", "README.md", "CHANGELOG.md" })
+            foreach (var file in new[] { "manifest.json", "icon.png", "README.md", "CHANGELOG.md", "LICENSE" })
             {
                 Assert.True(File.Exists(Path.Combine(RepoRoot, file)), $"{file} is required at the repo root for Thunderstore/Hexium.");
             }
@@ -88,11 +91,20 @@ namespace ServerInfo.Tests
         }
 
         [Fact]
-        public void Manifest_WebsiteUrlFieldIsPresentAsString()
+        public void Manifest_WebsiteUrlPointsAtTheRepo()
         {
-            var token = LoadManifest()["website_url"];
-            Assert.NotNull(token);
-            Assert.Equal(JTokenType.String, token.Type);
+            var url = (string)LoadManifest()["website_url"];
+            Assert.Equal("https://github.com/odin-sons/serverinfo", url);
+        }
+
+        [Fact]
+        public void License_ExistsAndIsGpl3()
+        {
+            var path = Path.Combine(RepoRoot, "LICENSE");
+            Assert.True(File.Exists(path), "LICENSE is missing at the repo root.");
+            var text = File.ReadAllText(path);
+            Assert.Contains("GNU GENERAL PUBLIC LICENSE", text);
+            Assert.Contains("Version 3, 29 June 2007", text);
         }
 
         [Fact]

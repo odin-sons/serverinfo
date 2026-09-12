@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// Copyright (C) 2026 Odin_Sons <https://github.com/odin-sons/serverinfo>
+
 using BepInEx;
 using BepInEx.Configuration;
 using BepInEx.Logging;
@@ -10,7 +13,7 @@ using Newtonsoft.Json;
 
 namespace ServerInfo
 {
-    [BepInPlugin("Odin_Sons.ServerInfo", "Server Info", "2.2.5")]
+    [BepInPlugin("Odin_Sons.ServerInfo", "Server Info", "2.2.6")]
     public class ServerInfoPlugin : BaseUnityPlugin
     {
         private static PluginLog Log;

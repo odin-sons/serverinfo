@@ -189,6 +189,16 @@ manifest.json, or `null` without one.
 
 Based on PublicWebLink by Maddy.
 
+## License
+
+[GNU General Public License v3.0 or later](LICENSE). Copyright (C) 2026
+Odin_Sons. If you fork or redistribute a modified version, GPL-3.0
+requires you to keep this project's copyright/license notices intact
+and license the whole work under GPL-3.0 too (see [LICENSE](LICENSE),
+section 5) — which in practice means crediting and linking back to
+<https://github.com/odin-sons/serverinfo>, since that's where the
+notice points.
+
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for building from source.

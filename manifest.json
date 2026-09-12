@@ -1,8 +1,8 @@
 {
     "name": "ServerInfo",
     "description": "Exposes a small HTTP JSON API with a Valheim server's world name, connected players (with Steam avatars), and installed mods - built for live status pages that read it directly from the browser.",
-    "version_number": "2.2.5",
-    "website_url": "",
+    "version_number": "2.2.6",
+    "website_url": "https://github.com/odin-sons/serverinfo",
     "dependencies": [
         "denikson-BepInExPack_Valheim-5.4.2350",
         "ValheimModding-JsonDotNET-13.0.4"

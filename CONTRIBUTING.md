@@ -91,8 +91,8 @@ contents, or to upload it to Hexium by hand):
 ```
 
 This builds the project and zips `manifest.json`, `icon.png`,
-`README.md`, `CHANGELOG.md`, and the plugin DLL — all flat at the
-package root — into `release/ServerInfo-<version>.zip`. No `plugins/`
+`README.md`, `CHANGELOG.md`, `LICENSE`, and the plugin DLL — all flat
+at the package root — into `release/ServerInfo-<version>.zip`. No `plugins/`
 subfolder on purpose: that special folder gets flattened straight into
 `BepInEx/plugins/` on install, separating the DLL from `manifest.json`,
 but this mod reads its own neighboring `manifest.json` at runtime (see
@@ -131,5 +131,12 @@ verbatim — what changed versus the previous published version. A
 missing section fails the build before anything ships (see
 `Changelog_HasASectionForTheCurrentVersion` in `ServerInfo.Tests`).
 
-`manifest.json`'s `website_url` is left empty — fill it in with this
-project's repository URL once one exists.
+## License
+
+GPL-3.0-or-later (see [LICENSE](LICENSE)). New source files should
+carry the two-line SPDX header used throughout the codebase:
+
+```
+// SPDX-License-Identifier: GPL-3.0-or-later
+// Copyright (C) 2026 Odin_Sons <https://github.com/odin-sons/serverinfo>
+```
