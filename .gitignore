@@ -1,0 +1,20 @@
+# Build output
+bin/
+obj/
+release/
+build/
+
+# NuGet
+packages/
+
+# IDE / tooling — local to each machine, not part of the project
+.idea/
+.vs/
+*.user
+*.DotSettings.user
+
+# Sync/agent tooling artifacts
+.stfolder/
+.codegraph/
+.rtk/
+CLAUDE.md

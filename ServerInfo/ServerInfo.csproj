@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net472</TargetFramework>
+        <AssemblyName>ServerInfo</AssemblyName>
+        <RootNamespace>ServerInfo</RootNamespace>
+        <LangVersion>latest</LangVersion>
+        <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="BepInEx.Core" Version="5.4.21" />
+        <PackageReference Include="UnityEngine.Modules" Version="2020.3.34" IncludeAssets="compile" />
+        <!-- Compile-only: the published package depends on the shared
+             ValheimModding-JsonDotNET library instead of bundling its own
+             copy, to avoid two Newtonsoft.Json.dll files loaded at once -->
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.3" IncludeAssets="compile" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <!-- Not part of net472's implicit framework reference set under
+             the SDK-style project format — needs to be listed explicitly -->
+        <Reference Include="System.Net.Http" />
+    </ItemGroup>
+
+
+</Project>

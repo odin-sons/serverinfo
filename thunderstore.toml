@@ -1,0 +1,36 @@
+[config]
+schemaVersion = "0.0.1"
+
+[package]
+namespace = "fogrew"
+name = "ServerInfo"
+# Overridden at publish time by `tcli publish --package-version` (see
+# .github/workflows/publish.yml), which reads the real version from the
+# git tag — this value is only a placeholder for manual `tcli build`/`init`.
+versionNumber = "2.2.0"
+description = "Exposes a small HTTP JSON API with a Valheim server's world name, connected players (with Steam avatars), and installed mods — built for live status pages that read it directly from the browser."
+websiteUrl = ""
+containsNsfwContent = false
+
+[package.dependencies]
+denikson-BepInExPack_Valheim = "5.4.2350"
+ValheimModding-JsonDotNET = "13.0.4"
+
+[build]
+icon = "./icon.png"
+readme = "./README.md"
+outdir = "./build"
+
+[[build.copy]]
+# No "plugins/" subfolder on purpose: that special folder gets flattened
+# straight into BepInEx/plugins/ on install, separated from manifest.json —
+# but our own mod reads its neighbor manifest.json at runtime (see
+# PackageManifestReader.cs), so the DLL must land next to it instead, the
+# same way it does for other manifest-reading mods observed in the wild
+# (e.g. shudnal-ConditionalConfigSync).
+source = "./ServerInfo/bin/Release/net472/ServerInfo.dll"
+target = "ServerInfo.dll"
+
+[publish]
+repository = "https://thunderstore.io"
+communities = [ "valheim" ]
