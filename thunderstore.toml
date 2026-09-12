@@ -2,7 +2,7 @@
 schemaVersion = "0.0.1"
 
 [package]
-namespace = "OdinSons"
+namespace = "Odin_Sons"
 name = "ServerInfo"
 # Overridden at publish time by `tcli publish --package-version` (see
 # .github/workflows/publish.yml), which reads the real version from the

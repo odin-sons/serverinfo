@@ -40,10 +40,10 @@
 ## 2.0.0
 
 - Renamed the project from PublicWebLink to **Server Info**: plugin GUID
-  changed to `OdinSons.ServerInfo`, display name to `Server Info`,
+  changed to `Odin_Sons.ServerInfo`, display name to `Server Info`,
   assembly to `ServerInfo.dll`, namespace to `ServerInfo`. This is a
   breaking change — the GUID change means BepInEx treats it as a
-  different plugin and generates a fresh `OdinSons.ServerInfo.cfg`; the
+  different plugin and generates a fresh `Odin_Sons.ServerInfo.cfg`; the
   old `Maddy.Publicweblink.cfg` is not migrated.
 
 ## 1.6.0

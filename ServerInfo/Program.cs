@@ -10,7 +10,7 @@ using Newtonsoft.Json;
 
 namespace ServerInfo
 {
-    [BepInPlugin("OdinSons.ServerInfo", "Server Info", "2.2.0")]
+    [BepInPlugin("Odin_Sons.ServerInfo", "Server Info", "2.2.0")]
     public class ServerInfoPlugin : BaseUnityPlugin
     {
         private static PluginLog Log;

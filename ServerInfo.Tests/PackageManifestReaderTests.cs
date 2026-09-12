@@ -9,7 +9,7 @@ namespace ServerInfo.Tests
         [InlineData("shudnal-ConditionalConfigSync-1.0.4", "shudnal")]
         [InlineData("shudnal-ConditionalConfigSync", "shudnal")]
         [InlineData("denikson-BepInExPack_Valheim-5.4.2350", "denikson")]
-        [InlineData("OdinSons-ServerInfo-2.2.0", "OdinSons")]
+        [InlineData("Odin_Sons-ServerInfo-2.2.0", "Odin_Sons")]
         [InlineData("SingleWord", null)]
         [InlineData("", null)]
         public void ParseNamespace_HandlesKnownFolderShapes(string folderName, string expectedNamespace)
