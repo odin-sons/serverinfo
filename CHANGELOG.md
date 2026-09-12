@@ -9,6 +9,15 @@ no prerelease suffixes).
 
 ## [Unreleased]
 
+## [2.2.2] - 2026-09-12
+
+### Fixed
+
+- `tcli publish` in the release pipeline now tolerates Thunderstore's
+  "already exists" response instead of failing the job — a version that
+  publishes there successfully but fails at a later step (e.g. Hexium)
+  can now be safely re-run without the Thunderstore step blocking it.
+
 ## [2.2.1] - 2026-09-12
 
 ### Added
@@ -200,6 +209,7 @@ no prerelease suffixes).
 
 - The unused Harmony dependency.
 
-[Unreleased]: https://github.com/odin-sons/serverinfo/compare/v2.2.1...HEAD
+[Unreleased]: https://github.com/odin-sons/serverinfo/compare/v2.2.2...HEAD
+[2.2.2]: https://github.com/odin-sons/serverinfo/compare/v2.2.1...v2.2.2
 [2.2.1]: https://github.com/odin-sons/serverinfo/compare/v2.2.0...v2.2.1
 [2.2.0]: https://github.com/odin-sons/serverinfo/releases/tag/v2.2.0

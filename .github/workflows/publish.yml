@@ -48,14 +48,27 @@ jobs:
         run: tcli build --package-version "${{ steps.version.outputs.version }}"
 
       # --file and --package-version are mutually exclusive on `tcli publish`
-      # (the version is already baked into the zip from the build step above)
+      # (the version is already baked into the zip from the build step above).
+      # Tolerates "already exists" so a re-run after a later step fails
+      # (e.g. Hexium) doesn't itself fail just because this step's own work
+      # already landed the first time.
       - name: Publish to Thunderstore
         env:
           THUNDERSTORE_API_TOKEN: ${{ secrets.THUNDERSTORE_API_TOKEN }}
+        shell: pwsh
         run: |
-          tcli publish `
+          $PSNativeCommandUseErrorActionPreference = $false
+          $output = tcli publish `
             --file "build/Odin_Sons-ServerInfo-${{ steps.version.outputs.version }}.zip" `
-            --token "$env:THUNDERSTORE_API_TOKEN"
+            --token "$env:THUNDERSTORE_API_TOKEN" 2>&1 | Out-String
+          Write-Output $output
+          if ($LASTEXITCODE -ne 0) {
+            if ($output -match "already exists") {
+              Write-Output "This version is already published on Thunderstore — treating as success so the pipeline can be safely re-run."
+            } else {
+              exit $LASTEXITCODE
+            }
+          }
 
       # Hexium has no first-party publish tool, but it runs the same
       # multipart-upload + submit API Thunderstore does — verified against
