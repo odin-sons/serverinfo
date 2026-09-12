@@ -106,7 +106,7 @@ Hexium accepts the same zip as-is, no changes needed.
   and uploads it via [Thunderstore CLI](https://github.com/thunderstore-io/thunderstore-cli)
   (`tcli`), authenticated with the `THUNDERSTORE_API_TOKEN` repository
   secret (a Thunderstore service account token — Settings → Teams →
-  fogrew → Service Accounts on thunderstore.io). See
+  OdinSons → Service Accounts on thunderstore.io). See
   `.github/workflows/publish.yml`.
 - **Hexium has no public upload API yet**, so this stays manual: grab
   the zip from the tag's GitHub Release (or run `package.ps1` locally)

@@ -12,7 +12,7 @@ status page to show live server state.
 
 Copy `ServerInfo.dll` into the server's `BepInEx/plugins/` folder and
 restart the server process — that's it. BepInEx generates
-`BepInEx/config/fogrew.ServerInfo.cfg` on first run with every setting
+`BepInEx/config/OdinSons.ServerInfo.cfg` on first run with every setting
 below at its default, so there's nothing else to set up before it works.
 
 ## Network setup
@@ -59,7 +59,7 @@ same server doesn't count as the same origin).
 
 ## Configuration
 
-Set via `BepInEx/config/fogrew.ServerInfo.cfg`. Numeric settings
+Set via `BepInEx/config/OdinSons.ServerInfo.cfg`. Numeric settings
 declare an acceptable range — BepInEx clamps an out-of-range value in
 the file to the nearest bound instead of accepting it as-is, and any
 BepInEx config-editor mod (e.g. Configuration Manager) renders them as a

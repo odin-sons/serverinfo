@@ -54,7 +54,7 @@ jobs:
           THUNDERSTORE_API_TOKEN: ${{ secrets.THUNDERSTORE_API_TOKEN }}
         run: |
           tcli publish `
-            --file "build/fogrew-ServerInfo-${{ steps.version.outputs.version }}.zip" `
+            --file "build/OdinSons-ServerInfo-${{ steps.version.outputs.version }}.zip" `
             --token "$env:THUNDERSTORE_API_TOKEN"
 
       # Hexium has no public upload API yet, so publishing there stays a
@@ -66,7 +66,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           gh release create "${{ github.ref_name }}" `
-            "build/fogrew-ServerInfo-${{ steps.version.outputs.version }}.zip" `
+            "build/OdinSons-ServerInfo-${{ steps.version.outputs.version }}.zip" `
             --title "${{ github.ref_name }}" `
             --notes "See CHANGELOG.md. Published to Thunderstore automatically; upload this zip to Hexium's submit page by hand (https://valheim.hexium.gg/) — Hexium has no public upload API yet."
         shell: pwsh
