@@ -168,6 +168,17 @@ namespace ServerInfo.Tests
         }
 
         [Fact]
+        public void Changelog_HasASectionForTheCurrentVersion()
+        {
+            // publish.yml extracts this exact section as the GitHub Release
+            // body — a missing one would otherwise only be noticed after
+            // the release goes out with an empty changelog.
+            var version = (string)LoadManifest()["version_number"];
+            var changelog = File.ReadAllText(Path.Combine(RepoRoot, "CHANGELOG.md"));
+            Assert.Matches($@"(?m)^## {Regex.Escape(version)}\s*$", changelog);
+        }
+
+        [Fact]
         public void Icon_Is256x256Png()
         {
             var path = Path.Combine(RepoRoot, "icon.png");

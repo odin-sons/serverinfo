@@ -113,5 +113,10 @@ Hexium accepts the same zip as-is, no changes needed.
   and upload it from your team's submit page at
   https://valheim.hexium.gg/.
 
+The GitHub Release body is that version's own `CHANGELOG.md` section,
+verbatim — what changed versus the previous published version. A
+missing section fails the build before anything ships (see
+`Changelog_HasASectionForTheCurrentVersion` in `ServerInfo.Tests`).
+
 `manifest.json`'s `website_url` is left empty — fill it in with this
 project's repository URL once one exists.
