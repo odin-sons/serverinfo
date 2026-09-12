@@ -52,7 +52,16 @@ also runs in CI (see Publishing) — a failing test blocks a release.
 
 ## Releasing
 
-Bump the version in all of:
+**Cut a release only when explicitly asked to.** Thunderstore's
+moderators manually approved this package's listing after it sat in
+review, and warned that publishing a new version can trigger
+re-validation of the whole listing — a tag here isn't free. Until
+someone explicitly asks for a release, land changes under the
+`## [Unreleased]` heading at the top of `CHANGELOG.md` instead of
+inventing a new version section, and leave the version unbumped
+everywhere below.
+
+When a release is actually wanted, bump the version in all of:
 
 - `ServerInfo/Program.cs` (`[BepInPlugin]`)
 - `ServerInfo/Properties/AssemblyInfo.cs` (`AssemblyVersion`/`AssemblyFileVersion`)
