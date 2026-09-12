@@ -47,13 +47,14 @@ jobs:
       - name: Build Thunderstore/Hexium package
         run: tcli build --package-version "${{ steps.version.outputs.version }}"
 
+      # --file and --package-version are mutually exclusive on `tcli publish`
+      # (the version is already baked into the zip from the build step above)
       - name: Publish to Thunderstore
         env:
           THUNDERSTORE_API_TOKEN: ${{ secrets.THUNDERSTORE_API_TOKEN }}
         run: |
           tcli publish `
             --file "build/fogrew-ServerInfo-${{ steps.version.outputs.version }}.zip" `
-            --package-version "${{ steps.version.outputs.version }}" `
             --token "$env:THUNDERSTORE_API_TOKEN"
 
       # Hexium has no public upload API yet, so publishing there stays a
