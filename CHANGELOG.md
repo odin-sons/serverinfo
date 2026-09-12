@@ -9,6 +9,17 @@ no prerelease suffixes).
 
 ## [Unreleased]
 
+## [2.2.1] - 2026-09-12
+
+### Added
+
+- Automated Hexium publishing in the release pipeline, alongside
+  Thunderstore. Reverse engineered from
+  [Kesomannen/gale](https://github.com/Kesomannen/gale)'s open-source
+  client against Hexium's own (undocumented) submission API:
+  initiate a multipart upload, `PUT` the package bytes, finish the
+  upload, then submit. No plugin code changes — release tooling only.
+
 ## [2.2.0] - 2026-09-12
 
 ### Added
@@ -189,5 +200,6 @@ no prerelease suffixes).
 
 - The unused Harmony dependency.
 
-[Unreleased]: https://github.com/odin-sons/serverinfo/compare/v2.2.0...HEAD
+[Unreleased]: https://github.com/odin-sons/serverinfo/compare/v2.2.1...HEAD
+[2.2.1]: https://github.com/odin-sons/serverinfo/compare/v2.2.0...v2.2.1
 [2.2.0]: https://github.com/odin-sons/serverinfo/releases/tag/v2.2.0

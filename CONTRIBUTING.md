@@ -111,10 +111,14 @@ Hexium accepts the same zip as-is, no changes needed.
   secret (a Thunderstore service account token — Settings → Teams →
   Odin_Sons → Service Accounts on thunderstore.io). See
   `.github/workflows/publish.yml`.
-- **Hexium has no public upload API yet**, so this stays manual: grab
-  the zip from the tag's GitHub Release (or run `package.ps1` locally)
-  and upload it from your team's submit page at
-  https://valheim.hexium.gg/.
+- **Hexium** publishing is also automated, against its own (undocumented,
+  but Thunderstore-shaped) submission API: initiate a multipart upload,
+  `PUT` the package bytes, finish the upload, then submit. Reverse
+  engineered from [Kesomannen/gale](https://github.com/Kesomannen/gale)'s
+  open-source client, which uses the same flow to publish to Hexium.
+  Authenticated with the `HEXIUM_API_TOKEN` repository secret (an API
+  token from your team's settings page on hexium.gg). See
+  `.github/workflows/publish.yml`.
 
 The GitHub Release body is that version's own `CHANGELOG.md` section,
 verbatim — what changed versus the previous published version. A

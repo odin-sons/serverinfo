@@ -57,6 +57,73 @@ jobs:
             --file "build/Odin_Sons-ServerInfo-${{ steps.version.outputs.version }}.zip" `
             --token "$env:THUNDERSTORE_API_TOKEN"
 
+      # Hexium has no first-party publish tool, but it runs the same
+      # multipart-upload + submit API Thunderstore does — verified against
+      # Kesomannen/gale's open-source client (Kesomannen/gale, src-tauri/
+      # src/thunderstore/{backend,models}.rs and profile/export/modpack.rs),
+      # which uses this exact flow to publish to both backends:
+      #   1. POST usermedia/initiate-upload/  -> upload_uuid + part URLs
+      #   2. PUT each part's bytes to its URL -> capture the ETag header
+      #   3. POST usermedia/{uuid}/finish-upload/ with the completed parts
+      #   4. POST submission/submit/ with the package metadata
+      - name: Publish to Hexium
+        env:
+          HEXIUM_API_TOKEN: ${{ secrets.HEXIUM_API_TOKEN }}
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = "Stop"
+          $version = "${{ steps.version.outputs.version }}"
+          $zipPath = "build/Odin_Sons-ServerInfo-$version.zip"
+          $base = "https://hexium.gg/api/experimental"
+          $headers = @{ Authorization = "Bearer $env:HEXIUM_API_TOKEN" }
+
+          function Invoke-HexiumApi($Method, $Uri, $Body) {
+            try {
+              $json = $Body | ConvertTo-Json -Depth 10
+              return Invoke-RestMethod -Method $Method -Uri $Uri -Headers $headers -ContentType "application/json" -Body $json
+            } catch {
+              $detail = $_.ErrorDetails.Message
+              $message = "Hexium API call to $Uri failed: $($_.Exception.Message)"
+              if ($detail) { $message = "$message`n$detail" }
+              throw $message
+            }
+          }
+
+          $fileBytes = [System.IO.File]::ReadAllBytes($zipPath)
+          $fileName = Split-Path $zipPath -Leaf
+
+          $initiate = Invoke-HexiumApi -Method Post -Uri "$base/usermedia/initiate-upload/" -Body @{
+            filename         = $fileName
+            file_size_bytes  = $fileBytes.Length
+          }
+
+          $uploadUuid = $initiate.user_media.uuid
+          if (-not $uploadUuid) {
+            throw "Hexium initiate-upload did not return a user_media.uuid"
+          }
+
+          $completedParts = @()
+          foreach ($part in $initiate.upload_urls) {
+            $chunk = $fileBytes[$part.offset..($part.offset + $part.length - 1)]
+            $putResponse = Invoke-WebRequest -Method Put -Uri $part.url -Body $chunk -ContentType "application/octet-stream"
+            $etag = $putResponse.Headers['ETag']
+            if ($etag -is [array]) { $etag = $etag[0] }
+            $completedParts += @{ ETag = $etag; PartNumber = $part.part_number }
+          }
+
+          Invoke-HexiumApi -Method Post -Uri "$base/usermedia/$uploadUuid/finish-upload/" -Body @{ parts = $completedParts } | Out-Null
+
+          Invoke-HexiumApi -Method Post -Uri "$base/submission/submit/" -Body @{
+            author_name           = "Odin_Sons"
+            categories            = @()
+            communities           = @("valheim")
+            has_nsfw_content      = $false
+            upload_uuid           = $uploadUuid
+            community_categories  = @{ valheim = @() }
+          } | Out-Null
+
+          Write-Output "Published to Hexium: https://valheim.hexium.gg/mods/Odin_Sons/ServerInfo"
+
       # The GitHub Release body is this version's own CHANGELOG.md section —
       # what changed versus the previous published version, Conventional
       # Changelog style. PackagingValidationTests already fails the build
@@ -72,13 +139,9 @@ jobs:
             throw "No '## [$version]' section found in CHANGELOG.md."
           }
           $notes = $match.Groups[1].Value.Trim()
-          $notes += "`n`n---`nUpload ``Odin_Sons-ServerInfo-$version.zip`` to Hexium's submit page by hand (https://valheim.hexium.gg/) — Hexium has no public upload API yet."
+          $notes += "`n`n---`nPublished automatically to [Thunderstore](https://thunderstore.io/package/Odin_Sons/ServerInfo/) and [Hexium](https://valheim.hexium.gg/mods/Odin_Sons/ServerInfo)."
           Set-Content -Path release-notes.md -Value $notes
 
-      # Hexium has no public upload API yet, so publishing there stays a
-      # manual step — attaching the built zip here makes that a 30-second
-      # drag-and-drop onto https://valheim.hexium.gg/ instead of a full
-      # local rebuild.
       - name: Attach package to GitHub Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
