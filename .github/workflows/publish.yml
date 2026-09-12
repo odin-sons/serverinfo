@@ -117,7 +117,11 @@ jobs:
 
           $completedParts = @()
           foreach ($part in $initiate.upload_urls) {
-            $chunk = $fileBytes[$part.offset..($part.offset + $part.length - 1)]
+            # PowerShell's $array[$a..$b] range-index isn't guaranteed to
+            # stay a [byte[]] (can decay to a generic object[]), which
+            # silently corrupts the upload — Array.Copy has no such ambiguity
+            $chunk = New-Object byte[] ([int]$part.length)
+            [Array]::Copy($fileBytes, [int]$part.offset, $chunk, 0, [int]$part.length)
             $putResponse = Invoke-WebRequest -Method Put -Uri $part.url -Body $chunk -ContentType "application/octet-stream"
             $etag = $putResponse.Headers['ETag']
             if ($etag -is [array]) { $etag = $etag[0] }

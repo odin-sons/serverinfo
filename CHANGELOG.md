@@ -9,6 +9,16 @@ no prerelease suffixes).
 
 ## [Unreleased]
 
+## [2.2.3] - 2026-09-12
+
+### Fixed
+
+- Hexium publish uploaded a corrupted package (`"Invalid ZIP file."`
+  from the server). PowerShell's `$array[$a..$b]` range-index isn't
+  guaranteed to stay a `[byte[]]` — it silently decayed to a generic
+  `object[]`, which `Invoke-WebRequest -Body` sent as something other
+  than raw bytes. Switched to `[Array]::Copy` into a real `byte[]`.
+
 ## [2.2.2] - 2026-09-12
 
 ### Fixed
@@ -209,7 +219,8 @@ no prerelease suffixes).
 
 - The unused Harmony dependency.
 
-[Unreleased]: https://github.com/odin-sons/serverinfo/compare/v2.2.2...HEAD
+[Unreleased]: https://github.com/odin-sons/serverinfo/compare/v2.2.3...HEAD
+[2.2.3]: https://github.com/odin-sons/serverinfo/compare/v2.2.2...v2.2.3
 [2.2.2]: https://github.com/odin-sons/serverinfo/compare/v2.2.1...v2.2.2
 [2.2.1]: https://github.com/odin-sons/serverinfo/compare/v2.2.0...v2.2.1
 [2.2.0]: https://github.com/odin-sons/serverinfo/releases/tag/v2.2.0
