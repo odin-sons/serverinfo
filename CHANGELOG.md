@@ -9,6 +9,14 @@ no prerelease suffixes).
 
 ## [Unreleased]
 
+## [2.2.7] - 2026-09-13
+
+### Fixed
+
+- Stopping the server no longer logs a spurious `ObjectDisposedException`
+  error from `HandleLoop` — `StopServer` closing the `HttpListener` while
+  a request is pending is expected during shutdown, not a real failure.
+
 ## [2.2.6] - 2026-09-13
 
 ### Added
@@ -257,7 +265,8 @@ no prerelease suffixes).
 
 - The unused Harmony dependency.
 
-[Unreleased]: https://github.com/odin-sons/serverinfo/compare/v2.2.6...HEAD
+[Unreleased]: https://github.com/odin-sons/serverinfo/compare/v2.2.7...HEAD
+[2.2.7]: https://github.com/odin-sons/serverinfo/compare/v2.2.6...v2.2.7
 [2.2.6]: https://github.com/odin-sons/serverinfo/compare/v2.2.5...v2.2.6
 [2.2.5]: https://github.com/odin-sons/serverinfo/compare/v2.2.4...v2.2.5
 [2.2.4]: https://github.com/odin-sons/serverinfo/compare/v2.2.3...v2.2.4

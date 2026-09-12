@@ -13,7 +13,7 @@ using Newtonsoft.Json;
 
 namespace ServerInfo
 {
-    [BepInPlugin("Odin_Sons.ServerInfo", "Server Info", "2.2.6")]
+    [BepInPlugin("Odin_Sons.ServerInfo", "Server Info", "2.2.7")]
     public class ServerInfoPlugin : BaseUnityPlugin
     {
         private static PluginLog Log;
@@ -140,6 +140,11 @@ namespace ServerInfo
                 }
                 catch (Exception ex)
                 {
+                    if (!running)
+                    {
+                        break;
+                    }
+
                     Log.Error($"Error in handle loop: {ex}");
                 }
             }
