@@ -9,6 +9,17 @@ no prerelease suffixes).
 
 ## [Unreleased]
 
+## [2.2.4] - 2026-09-13
+
+### Fixed
+
+- Removed the em dash from `manifest.json`'s `description` — Thunderstore's
+  manifest validator rejects it (confirmed by hand, undocumented). Uses
+  a plain hyphen now; a test guards against it coming back.
+- `CHANGELOG.md` is now actually included in the published package zip.
+  `tcli build` only copies `icon`/`readme` automatically; the changelog
+  needed its own `[[build.copy]]` entry in `thunderstore.toml`.
+
 ## [2.2.3] - 2026-09-12
 
 ### Fixed
@@ -219,7 +230,8 @@ no prerelease suffixes).
 
 - The unused Harmony dependency.
 
-[Unreleased]: https://github.com/odin-sons/serverinfo/compare/v2.2.3...HEAD
+[Unreleased]: https://github.com/odin-sons/serverinfo/compare/v2.2.4...HEAD
+[2.2.4]: https://github.com/odin-sons/serverinfo/compare/v2.2.3...v2.2.4
 [2.2.3]: https://github.com/odin-sons/serverinfo/compare/v2.2.2...v2.2.3
 [2.2.2]: https://github.com/odin-sons/serverinfo/compare/v2.2.1...v2.2.2
 [2.2.1]: https://github.com/odin-sons/serverinfo/compare/v2.2.0...v2.2.1

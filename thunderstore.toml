@@ -7,8 +7,8 @@ name = "ServerInfo"
 # Overridden at publish time by `tcli publish --package-version` (see
 # .github/workflows/publish.yml), which reads the real version from the
 # git tag — this value is only a placeholder for manual `tcli build`/`init`.
-versionNumber = "2.2.3"
-description = "Exposes a small HTTP JSON API with a Valheim server's world name, connected players (with Steam avatars), and installed mods — built for live status pages that read it directly from the browser."
+versionNumber = "2.2.4"
+description = "Exposes a small HTTP JSON API with a Valheim server's world name, connected players (with Steam avatars), and installed mods - built for live status pages that read it directly from the browser."
 websiteUrl = ""
 containsNsfwContent = false
 
@@ -30,6 +30,12 @@ outdir = "./build"
 # (e.g. shudnal-ConditionalConfigSync).
 source = "./ServerInfo/bin/Release/net472/ServerInfo.dll"
 target = "ServerInfo.dll"
+
+[[build.copy]]
+# CHANGELOG.md isn't a [build] field like icon/readme, so it needs its
+# own copy entry to actually end up in the package
+source = "./CHANGELOG.md"
+target = "CHANGELOG.md"
 
 [publish]
 repository = "https://thunderstore.io"

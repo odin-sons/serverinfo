@@ -62,6 +62,17 @@ namespace ServerInfo.Tests
         }
 
         [Fact]
+        public void Manifest_DescriptionHasNoEmOrEnDash()
+        {
+            // Thunderstore's manifest validator rejected a real submission over
+            // an em dash (—) in this field — confirmed by hand, not documented
+            // anywhere. Use a plain hyphen instead.
+            var description = (string)LoadManifest()["description"];
+            Assert.DoesNotContain('—', description); // —
+            Assert.DoesNotContain('–', description); // –
+        }
+
+        [Fact]
         public void Manifest_VersionNumberIsBepInExSafeSemVer()
         {
             // Thunderstore/Hexium both accept a "-alpha.N"/"-beta.N"/"-rc.N"
