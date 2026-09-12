@@ -69,7 +69,10 @@ doesn't error there, it silently leaves `BepInPlugin.Version` null
 (verified directly against BepInEx.dll).
 
 `dotnet test` fails loudly if the first three drift apart, so it's hard
-to miss one. Add an entry to `CHANGELOG.md`, commit, then tag:
+to miss one. Add a `## [<version>] - <YYYY-MM-DD>` section to
+`CHANGELOG.md` ([Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
+format — group entries under `### Added`/`Changed`/`Deprecated`/
+`Removed`/`Fixed`/`Security`, newest version first), commit, then tag:
 
 ```
 git tag v<version>

@@ -172,10 +172,11 @@ namespace ServerInfo.Tests
         {
             // publish.yml extracts this exact section as the GitHub Release
             // body — a missing one would otherwise only be noticed after
-            // the release goes out with an empty changelog.
+            // the release goes out with an empty changelog. Keep a
+            // Changelog heading shape: "## [X.Y.Z] - YYYY-MM-DD".
             var version = (string)LoadManifest()["version_number"];
             var changelog = File.ReadAllText(Path.Combine(RepoRoot, "CHANGELOG.md"));
-            Assert.Matches($@"(?m)^## {Regex.Escape(version)}\s*$", changelog);
+            Assert.Matches($@"(?m)^## \[{Regex.Escape(version)}\] - \d{{4}}-\d{{2}}-\d{{2}}\s*$", changelog);
         }
 
         [Fact]
